@@ -1,0 +1,78 @@
+<app-loading
+  [isLoading]="isLoading"
+  loadingText="Loading cart items..."
+></app-loading>
+
+<!-- USER NOT LOGGED IN -->
+<div *ngIf="!isUserLoggedIn && !isLoading" class="go_login_page">
+  <h2>Please login to view your cart</h2>
+  <a routerLink="/login">Login</a>
+</div>
+
+<!-- EMPTY CART -->
+<div *ngIf="isUserLoggedIn && !isLoading && cartItems.length === 0" class="no_cart_found">
+  <h2>Your cart is empty</h2>
+  <a routerLink="/">Continue Shopping</a>
+</div>
+
+<!-- CART DATA -->
+<div *ngIf="cartItems.length > 0 && !isLoading" class="cart-page">
+
+  <h1>My Cart</h1>
+
+  <div class="cart_container">
+
+    <!-- CART ITEMS -->
+    <div class="cart_details">
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Variant</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of cartItems">
+            <td>{{ item.name }}</td>
+            <td>
+              {{ item.color }} <br />
+              <small>Variant ID: {{ item.variant_id }}</small>
+            </td>
+            <td>₹ {{ item.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>₹ {{ item.price * item.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="cart_summary">
+      <h3>Summary</h3>
+
+      <ul>
+        <li>
+          <span>Subtotal</span>
+          <span>₹ {{ subtotal }}</span>
+        </li>
+        <li>
+          <span>Delivery</span>
+          <span>₹ {{ deliveryCharge }}</span>
+        </li>
+        <li class="total">
+          <strong>Total</strong>
+          <strong>₹ {{ total }}</strong>
+        </li>
+      </ul>
+
+      <button class="checkout_btn" (click)="goToCheckout()">
+        Proceed to Checkout
+      </button>
+    </div>
+
+  </div>
+</div>

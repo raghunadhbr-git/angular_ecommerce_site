@@ -1,0 +1,19 @@
+<app-loading [isLoading]="isLoading"></app-loading>
+
+<div class="container" *ngIf="!isLoading">
+
+  <h2>Add Product</h2>
+
+  <form #f="ngForm" (ngSubmit)="submit(f.value)">
+
+    <input name="name" ngModel placeholder="Product Name" required />
+    <input name="price" ngModel type="number" placeholder="Price" required />
+    <input name="category" ngModel placeholder="Category" />
+    <input name="image" ngModel placeholder="Image URL" />
+    <textarea name="description" ngModel placeholder="Description"></textarea>
+
+    <button type="submit">Next → Add Stock</button>
+
+  </form>
+
+</div>

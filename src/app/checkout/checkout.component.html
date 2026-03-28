@@ -1,0 +1,41 @@
+<div class="checkout">
+
+  <h2>Checkout</h2>
+
+  <p *ngIf="isLoading">Processing...</p>
+
+  <p *ngIf="!isLoading">
+    Total Amount: <strong>₹ {{ totalPrice }}</strong>
+  </p>
+
+  <form #checkoutForm="ngForm" (ngSubmit)="placeOrder()">
+
+    <div>
+      <label>Contact Number</label>
+      <input
+        type="number"
+        name="contact"
+        [(ngModel)]="contact"
+        required
+      />
+    </div>
+
+    <div>
+      <label>Delivery Address</label>
+      <textarea
+        name="address"
+        [(ngModel)]="address"
+        required
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="checkoutForm.invalid || isLoading"
+    >
+      {{ isLoading ? 'Placing Order...' : 'Place Order' }}
+    </button>
+
+  </form>
+
+</div>

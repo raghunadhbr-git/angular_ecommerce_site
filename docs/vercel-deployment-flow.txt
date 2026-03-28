@@ -1,0 +1,74 @@
+VERCEL DEPLOYMENT FLOW (ANGULAR PROJECT)
+
+1. LOGIN TO VERCEL
+
+* Go to https://vercel.com
+* Click "Continue with GitHub"
+* Authorize your GitHub account
+
+2. IMPORT PROJECT
+
+* Click "Add New Project"
+* Select your repository: angular_ecommerce_site
+* Click "Import"
+
+3. PROJECT CONFIGURATION
+
+* Project Name: angular-ecommerce-site (or keep default)
+* Framework Preset: Angular (auto-detected)
+* Root Directory: ./
+
+4. BUILD SETTINGS (IMPORTANT)
+
+* Build Command: npm run build
+* Output Directory: dist/angular_ecommerce_site
+* Install Command: npm install (default)
+
+5. BRANCH SELECTION
+
+* Select branch: main
+
+6. ENVIRONMENT VARIABLES
+
+* Leave empty (if no backend)
+* If backend exists, add:
+  KEY: API_URL
+  VALUE: https://your-backend-url
+
+7. DEPLOY
+
+* Click "Deploy"
+* Wait for build and deployment to complete
+
+8. AFTER DEPLOYMENT
+
+* You will get a live URL:
+  https://your-project-name.vercel.app
+
+9. FIX BLANK PAGE ISSUE (IMPORTANT FOR ANGULAR ROUTING)
+
+* Create file: vercel.json in root folder
+* Add the following content:
+
+{
+"routes": [
+{ "src": "/(.*)", "dest": "/" }
+]
+}
+
+* Then run:
+  git add .
+  git commit -m "fix vercel routing"
+  git push
+
+10. REDEPLOY
+
+* Vercel will automatically redeploy after push
+
+FINAL CHECK
+
+* Ensure dist/angular_ecommerce_site folder is generated
+* Ensure angular.json has correct project name
+* Ensure browserTarget uses angular_ecommerce_site
+
+DONE ✅

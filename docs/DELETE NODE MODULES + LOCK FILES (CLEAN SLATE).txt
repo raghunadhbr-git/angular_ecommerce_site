@@ -1,0 +1,64 @@
+✅ STEP 1: STOP ANGULAR SERVER
+Press in the terminal:
+
+Ctrl + C
+________________________________________
+✅ STEP 2: DELETE NODE MODULES + LOCK FILES (CLEAN SLATE)
+Run these from your Angular project root
+(E:\ecommerce-platform\angular_ecommerce)
+
+rmdir /s /q node_modules
+del package-lock.json
+rmdir /s /q .angular
+
+👉 This removes:
+•	node_modules
+•	Angular cache
+•	lock file
+________________________________________
+✅ STEP 3: VERIFY NODE & NPM (IMPORTANT)
+
+node -v
+npm -v
+
+Expected:
+•	Node: v18+ or v20
+•	npm: 9+
+
+If node is missing → stop and tell me.
+________________________________________
+✅ STEP 4: FRESH INSTALL DEPENDENCIES
+
+npm install
+
+⏳ Wait until it finishes fully (no Ctrl+C).
+________________________________________
+✅ STEP 5: INSTALL REQUIRED ANGULAR DEPENDENCIES (SAFE)
+Run these even if they already exist (no harm):
+
+npm install @angular/forms @angular/common @angular/router
+npm install @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons
+
+✅ STEP 6: VERIFY app.module.ts (VERY IMPORTANT)
+
+Your file is already correct, just double-check it contains:
+
+imports: [
+  BrowserModule,
+  CommonModule,
+  RouterModule,
+  AppRoutingModule,
+  FormsModule,
+  HttpClientModule,
+  FontAwesomeModule
+]
+
+⚠️ If FormsModule or CommonModule is missing → ngForm/ngIf WILL break.
+
+✅ STEP 7: START SERVER CLEAN
+
+ng serve
+
+Open:
+👉 http://localhost:4200
+

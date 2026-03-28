@@ -1,0 +1,96 @@
+<!-- SIGN UP -->
+<div class="registerForm" *ngIf="!showLogin">
+  <div class="text">
+    <h1>Sign Up</h1>
+  </div>
+
+  <div class="signupform">
+    <form #registerForm="ngForm" (ngSubmit)="registerFormhandle(registerForm)">
+
+      <label>Name:</label>
+      <input
+        type="text"
+        name="name"
+        ngModel
+        required
+        placeholder="Enter your name"
+      />
+
+      <label>Email:</label>
+      <input
+        type="email"
+        name="email"
+        ngModel
+        required
+        placeholder="Enter email"
+      />
+
+      <label>Password:</label>
+      <input
+        type="password"
+        name="password"
+        ngModel
+        required
+        minlength="5"
+        placeholder="Min length 5"
+      />
+
+      <!-- ROLE -->
+      <label>Account Type:</label>
+      <select name="role_type" ngModel required>
+        <option value="user">Customer</option>
+        <option value="seller">Seller</option>
+      </select>
+
+      <button type="submit" [disabled]="registerForm.invalid">
+        {{ isLoading ? 'Loading...' : 'Sign Up' }}
+      </button>
+
+      <a class="auth-toggle-link" (click)="openLogin()">
+        Already have an account? <span>Login</span>
+      </a>
+
+    </form>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div class="registerForm" *ngIf="showLogin">
+  <div class="text">
+    <h1>Login</h1>
+  </div>
+
+  <div class="signupform">
+    <form #loginForm="ngForm" (ngSubmit)="loginFormhandle(loginForm)">
+
+      <label>Email:</label>
+      <input
+        type="email"
+        name="email"
+        ngModel
+        required
+        placeholder="Enter email"
+      />
+
+      <label>Password:</label>
+      <input
+        type="password"
+        name="password"
+        ngModel
+        required
+        placeholder="Password"
+      />
+
+      <p class="login-failed">{{ loginFailed }}</p>
+
+      <button type="submit" [disabled]="loginForm.invalid">
+        {{ isLoading ? 'Fetching...' : 'Login' }}
+      </button>
+
+      <a class="auth-toggle-link" (click)="openSignUp()">
+        New user? <span>Sign Up</span>
+      </a>
+
+    </form>
+  </div>
+</div>

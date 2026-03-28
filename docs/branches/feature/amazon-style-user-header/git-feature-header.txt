@@ -1,0 +1,68 @@
+# ==========================================================
+# FEATURE: Amazon Style User Header
+# Branch: feature/amazon-style-user-header
+# ==========================================================
+
+
+# ===========================
+# 1️⃣ Create Feature Branch
+# ===========================
+
+git checkout -b feature/amazon-style-user-header
+
+
+# ===========================
+# 2️⃣ Add Modified Files
+# ===========================
+
+git add src/app/header/header.component.html
+git add src/app/header/header.component.ts
+git add src/app/header/header.component.css
+
+
+# ===========================
+# 3️⃣ Commit Changes
+# ===========================
+
+git commit -m "Amazon style user header with dropdown and returns & orders section"
+
+
+# ===========================
+# 4️⃣ First Time Push (Set Upstream)
+# IMPORTANT: Use -u only first time
+# ===========================
+
+git push -u origin feature/amazon-style-user-header
+
+
+# ==========================================================
+# 🔍 TEST IN FEATURE BRANCH BEFORE MERGING
+# Run: ng serve
+# Verify:
+# - Dropdown working
+# - Cart count working
+# - Orders route working
+# - Logout working
+# ==========================================================
+
+
+# ===========================
+# 5️⃣ Merge Into Main (After Testing)
+# ===========================
+
+git checkout main
+git pull origin main
+git merge feature/amazon-style-user-header
+git push origin main
+
+
+# ==========================================================
+# 6️⃣ OPTIONAL: Delete Feature Branch
+# (Do only after successful merge & deploy)
+# ==========================================================
+
+# Delete Local Branch
+git branch -d feature/amazon-style-user-header
+
+# Delete Remote Branch
+git push origin --delete feature/amazon-style-user-header

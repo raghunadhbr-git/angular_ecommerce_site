@@ -1,0 +1,11 @@
+# Ensure you're on main
+git checkout main
+
+# Delete all local branches except main
+git branch | Where-Object { $_ -notmatch "main" } | ForEach-Object { git branch -D $_.Trim() }
+
+# Delete all remote-tracking branches except origin/main
+git branch -r | Where-Object { $_ -notmatch "origin/main" } | ForEach-Object { git branch -dr $_.Trim() }
+
+# Remove remote origin
+git remote remove origin
