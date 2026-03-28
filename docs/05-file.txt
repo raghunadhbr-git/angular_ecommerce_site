@@ -11,7 +11,7 @@ cd E:\ecommerce-platform\angular_ecommerce
 git branch
 
 
-👉 Make sure you’re on main
+👉 Make sure you’re on main 
 
 ✅ STEP 3: CREATE FEATURE BRANCH (ML EVENTS)
 
