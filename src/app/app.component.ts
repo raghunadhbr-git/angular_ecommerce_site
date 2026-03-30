@@ -27,20 +27,20 @@ export class AppComponent implements OnInit {
 
     // 🔐 1) Auth Service
     this.http.get(
-      'https://mellow-illumination-production.up.railway.app'
+      'https://auth-service-production-416b.up.railway.app'
     ).subscribe({ error: () => {} });
 
     // 📦 2) Product Service
     setTimeout(() => {
       this.http.get(
-        'https://product-backend-production-8593.up.railway.app'
+        'https://backend-product-service-production.up.railway.app'
       ).subscribe({ error: () => {} });
     }, 500);
 
     // 🛒 3) Cart / Order Service
     setTimeout(() => {
       this.http.get(
-        'https://backend-cart-order-service-production.up.railway.app'
+        'https://backend-cart-order-service-production-bf95.up.railway.app'
       ).subscribe({ error: () => {} });
     }, 1000);
 
