@@ -47,14 +47,14 @@ export class AppComponent implements OnInit {
     // 📊 4) ML Events Service
     setTimeout(() => {
       this.http.get(
-        'https://backend-ml-events-service-production.up.railway.app'
+        'https://backend-ml-events-service-production-3b89.up.railway.app'
       ).subscribe({ error: () => {} });
     }, 1500);
 
     // 🤖 5) ML Recommendation Service
     setTimeout(() => {
       this.http.get(
-        'https://backend-ml-recommendation-service-production.up.railway.app'
+        'https://backend-ml-recommendation-service-production-052b.up.railway.app'
       ).subscribe({ error: () => {} });
     }, 2000);
 
