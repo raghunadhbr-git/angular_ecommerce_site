@@ -17,7 +17,7 @@ export class RecommendationService {
   // 🚀 PRODUCTION ML RECOMMENDATION SERVICE (RENDER)
   // =====================================
   private readonly RAILWAY_BASE_URL =
-    'https://backend-ml-recommendation-service-production.up.railway.app/api';
+    'https://backend-ml-recommendation-service-production-052b.up.railway.app/api';
 
   // ✅ ACTIVE BASE URL
   private readonly baseUrl = this.RAILWAY_BASE_URL;
