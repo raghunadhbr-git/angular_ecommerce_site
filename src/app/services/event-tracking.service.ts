@@ -16,7 +16,7 @@ export class EventTrackingService {
   // 🚀 PRODUCTION ML EVENTS SERVICE (RAILWAY) ✅ ACTIVE
   // =====================================================
   private readonly RAILWAY_BASE_URL =
-    'https://backend-ml-events-service-production.up.railway.app/api/events';
+    'https://backend-ml-events-service-production-3b89.up.railway.app/api/events';
 
   // ✅ ACTIVE BASE URL
   private readonly baseUrl = this.RAILWAY_BASE_URL;
