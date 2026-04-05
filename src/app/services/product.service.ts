@@ -1,5 +1,13 @@
+// =========================
+// 📦 Product Service (FINAL)
+// Supports:
+// - Customer APIs (Public)
+// - Seller APIs (Protected - JWT)
+// =========================
+// Cell 1
+
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from 'src/data.type';
 
@@ -27,39 +35,73 @@ export class ProductService {
     'https://backend-product-service-production.up.railway.app/api/v1/products';
 
   // ✅ ACTIVE URLS
-  private readonly baseUrl = this.RAILWAY_BASE_URL;
-  private readonly sellerUrl = this.RAILWAY_SELLER_URL;
+  private readonly baseUrl = this.RAILWAY_BASE_URL;     // Customer APIs
+  private readonly sellerUrl = this.RAILWAY_SELLER_URL; // Seller APIs
 
   constructor(private http: HttpClient) {}
 
   // =========================
-  // 📦 GET ALL PRODUCTS
+  // 🔐 COMMON AUTH HEADER
   // =========================
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+  }
+
+  // =====================================================
+  // 🟢 CUSTOMER APIs (NO TOKEN REQUIRED)
+  // =====================================================
+
+  // 📦 GET ALL PRODUCTS
   getProductList(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/get`);
   }
 
-  // =========================
   // 🔍 GET SINGLE PRODUCT
-  // =========================
   getSingleProduct(id: string): Observable<Product> {
     return this.http.get<Product>(`${this.baseUrl}/get/${id}`);
   }
 
-  // =========================
-  // ➕ ADD PRODUCT (SELLER)
-  // =========================
+  // =====================================================
+  // 🔴 SELLER APIs (JWT REQUIRED)
+  // =====================================================
+
+  // ➕ ADD PRODUCT
   addProduct(payload: any): Observable<any> {
-    return this.http.post(`${this.sellerUrl}/add`, payload);
+    return this.http.post(
+      `${this.sellerUrl}/add`,
+      payload,
+      { headers: this.getAuthHeaders() }
+    );
   }
 
-  // =========================
   // 📦 ADD VARIANT / STOCK
-  // =========================
   addVariant(productId: number, payload: any): Observable<any> {
     return this.http.post(
       `${this.sellerUrl}/${productId}/variants`,
-      payload
+      payload,
+      { headers: this.getAuthHeaders() }
+    );
+  }
+
+  // ✏️ UPDATE PRODUCT
+  updateProduct(productId: number, payload: any): Observable<any> {
+    return this.http.put(
+      `${this.sellerUrl}/${productId}`,
+      payload,
+      { headers: this.getAuthHeaders() }
+    );
+  }
+
+  // ❌ DELETE PRODUCT
+  deleteProduct(productId: number): Observable<any> {
+    return this.http.delete(
+      `${this.sellerUrl}/${productId}`,
+      { headers: this.getAuthHeaders() }
     );
   }
 }
