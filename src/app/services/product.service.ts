@@ -1,5 +1,5 @@
 // =========================
-// 📦 Product Service (FINAL - MATCHES BACKEND)
+// 📦 Product Service (FINAL FIXED)
 // =========================
 // Cell 1
 
@@ -16,27 +16,26 @@ export class ProductService {
   // =====================================
   // 🚀 RAILWAY BACKEND (ACTIVE)
   // =====================================
-  private readonly RAILWAY_BASE_URL =
-    'https://backend-product-service-production.up.railway.app/api/angularProduct';
+  private readonly BASE_URL =
+    'https://backend-product-service-production.up.railway.app';
 
-  private readonly RAILWAY_SELLER_URL =
-    'https://backend-product-service-production.up.railway.app/api/v1/products';
-
-  // ✅ ACTIVE URLS
-  private readonly baseUrl = this.RAILWAY_BASE_URL;     // Customer APIs
-  private readonly sellerUrl = this.RAILWAY_SELLER_URL; // Seller APIs
+  // ✅ APIs
+  private readonly CUSTOMER_API = `${this.BASE_URL}/api/angularProduct`;
+  private readonly SELLER_API = `${this.BASE_URL}/api/v1/products`;
 
   constructor(private http: HttpClient) {}
 
   // =========================
-  // 🔐 AUTH HEADER (SELLER)
+  // 🔐 AUTH HEADER (FIXED)
   // =========================
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
 
+    console.log("🔥 TOKEN USED:", token); // DEBUG
+
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
+      Authorization: token ? `Bearer ${token}` : ''
     });
   }
 
@@ -46,22 +45,25 @@ export class ProductService {
 
   // 📦 GET ALL PRODUCTS
   getProductList(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/get`);
+    console.log("✅ GET PRODUCTS API CALLED");
+    return this.http.get<Product[]>(`${this.CUSTOMER_API}/get`);
   }
 
   // 🔍 GET SINGLE PRODUCT
   getSingleProduct(id: string): Observable<Product> {
-    return this.http.get<Product>(`${this.baseUrl}/get/${id}`);
+    return this.http.get<Product>(`${this.CUSTOMER_API}/get/${id}`);
   }
 
   // =====================================================
   // 🔴 SELLER APIs (JWT REQUIRED)
   // =====================================================
 
-  // ➕ ADD PRODUCT
+  // ➕ ADD PRODUCT (FINAL FIX)
   addProduct(payload: any): Observable<any> {
+    console.log("🚀 ADD PRODUCT CALLED", payload);
+
     return this.http.post(
-      `${this.sellerUrl}/add`,
+      `${this.SELLER_API}/add`,
       payload,
       { headers: this.getAuthHeaders() }
     );
@@ -70,7 +72,7 @@ export class ProductService {
   // 📦 ADD VARIANT / STOCK
   addVariant(productId: number, payload: any): Observable<any> {
     return this.http.post(
-      `${this.sellerUrl}/${productId}/variants`,
+      `${this.SELLER_API}/${productId}/variants`,
       payload,
       { headers: this.getAuthHeaders() }
     );
