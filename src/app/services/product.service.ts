@@ -1,8 +1,5 @@
 // =========================
-// 📦 Product Service (FINAL)
-// Supports:
-// - Customer APIs (Public)
-// - Seller APIs (Protected - JWT)
+// 📦 Product Service (FINAL - MATCHES BACKEND)
 // =========================
 // Cell 1
 
@@ -15,15 +12,6 @@ import { Product } from 'src/data.type';
   providedIn: 'root'
 })
 export class ProductService {
-
-  // =====================================
-  // 🌱 LOCAL BACKEND (COMMENTED)
-  // =====================================
-  // private readonly LOCAL_BASE_URL =
-  //   'http://127.0.0.1:5002/api/angularProduct';
-
-  // private readonly LOCAL_SELLER_URL =
-  //   'http://127.0.0.1:5002/api/v1/products';
 
   // =====================================
   // 🚀 RAILWAY BACKEND (ACTIVE)
@@ -41,7 +29,7 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   // =========================
-  // 🔐 COMMON AUTH HEADER
+  // 🔐 AUTH HEADER (SELLER)
   // =========================
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
@@ -53,7 +41,7 @@ export class ProductService {
   }
 
   // =====================================================
-  // 🟢 CUSTOMER APIs (NO TOKEN REQUIRED)
+  // 🟢 CUSTOMER APIs (NO TOKEN)
   // =====================================================
 
   // 📦 GET ALL PRODUCTS
@@ -84,23 +72,6 @@ export class ProductService {
     return this.http.post(
       `${this.sellerUrl}/${productId}/variants`,
       payload,
-      { headers: this.getAuthHeaders() }
-    );
-  }
-
-  // ✏️ UPDATE PRODUCT
-  updateProduct(productId: number, payload: any): Observable<any> {
-    return this.http.put(
-      `${this.sellerUrl}/${productId}`,
-      payload,
-      { headers: this.getAuthHeaders() }
-    );
-  }
-
-  // ❌ DELETE PRODUCT
-  deleteProduct(productId: number): Observable<any> {
-    return this.http.delete(
-      `${this.sellerUrl}/${productId}`,
       { headers: this.getAuthHeaders() }
     );
   }
