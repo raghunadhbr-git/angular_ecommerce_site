@@ -20,12 +20,12 @@ export class AuthenticationService {
   //   'http://127.0.0.1:5001/api/v1/auth/angularUser';
 
   // ================================
-  // 🚀 RAILWAY BACKEND (ACTIVE)
+  // 🚀 RENDER BACKEND (ACTIVE)
   // ================================
-  private readonly RAILWAY_BASE_URL =
-    'https://auth-service-production-416b.up.railway.app/api/v1/auth/angularUser';
+  private readonly RENDER_BASE_URL =
+    'https://backend-auth-service-ks6f.onrender.com/api/v1/auth/angularUser';
 
-  private readonly baseUrl = this.RAILWAY_BASE_URL;
+  private readonly baseUrl = this.RENDER_BASE_URL;
 
   // Auth state
   authState$ = new BehaviorSubject<'default' | 'user' | 'seller'>('default');
