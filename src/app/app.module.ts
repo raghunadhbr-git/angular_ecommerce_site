@@ -35,8 +35,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 /* SERVICES */
 import { SharedService } from './services/shared.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-
-// 🔥 NEW IMPORT
 import { RequestIdInterceptor } from './interceptors/request-id.interceptor';
 
 import { ChatWidgetComponent } from './assistant/chat-widget/chat-widget.component';
