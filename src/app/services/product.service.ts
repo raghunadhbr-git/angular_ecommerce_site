@@ -14,10 +14,10 @@ import { Product } from 'src/data.type';
 export class ProductService {
 
   // =====================================
-  // 🚀 RAILWAY BACKEND (ACTIVE)
+  // 🚀 RENDER BACKEND (ACTIVE)
   // =====================================
   private readonly BASE_URL =
-    'https://backend-product-service-production.up.railway.app';
+    'https://backend-product-service-ncl2.onrender.com';
 
   // ✅ APIs
   private readonly CUSTOMER_API = `${this.BASE_URL}/api/angularProduct`;
