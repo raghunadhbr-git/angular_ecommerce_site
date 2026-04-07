@@ -1,3 +1,7 @@
+// =====================================================
+// 🟦 REQUEST ID INTERCEPTOR – GLOBAL REQUEST TRACKING
+// =====================================================
+
 import { Injectable } from '@angular/core';
 import {
   HttpEvent,
@@ -12,7 +16,7 @@ export class RequestIdInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    // 🔥 Get existing OR create new
+    // 🔥 Get existing or create new Request ID
     let requestId = localStorage.getItem('REQUEST_ID');
 
     if (!requestId) {
@@ -20,7 +24,7 @@ export class RequestIdInterceptor implements HttpInterceptor {
       localStorage.setItem('REQUEST_ID', requestId);
     }
 
-    // 🔥 Attach header
+    // 🔥 Attach Request ID header
     const modifiedReq = req.clone({
       setHeaders: {
         'X-Request-ID': requestId
