@@ -27,13 +27,13 @@ export class AppComponent implements OnInit {
 
     // 🔐 1) Auth Service
     this.http.get(
-      'https://auth-service-production-416b.up.railway.app'
+      'https://backend-auth-service-ks6f.onrender.com'
     ).subscribe({ error: () => {} });
 
     // 📦 2) Product Service
     setTimeout(() => {
       this.http.get(
-        'https://backend-product-service-production.up.railway.app'
+        'https://backend-product-service-ncl2.onrender.com'
       ).subscribe({ error: () => {} });
     }, 500);
 
