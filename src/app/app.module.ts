@@ -29,7 +29,6 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { LoadingComponent } from './loading/loading.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-/* ICONS */
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 /* SERVICES */
@@ -72,17 +71,17 @@ import { ChatWidgetComponent } from './assistant/chat-widget/chat-widget.compone
   providers: [
     SharedService,
 
-    // 🔐 AUTH INTERCEPTOR
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-
-    // 🔥 REQUEST ID INTERCEPTOR
+    // 🔥 REQUEST ID FIRST (BEST PRACTICE)
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestIdInterceptor,
+      multi: true
+    },
+
+    // 🔐 AUTH AFTER REQUEST ID
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true
     }
   ],
