@@ -16,7 +16,7 @@ export class RequestIdInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    // 🔥 Get existing or create new Request ID
+    // 🔥 Get existing OR create new Request ID
     let requestId = localStorage.getItem('REQUEST_ID');
 
     if (!requestId) {
@@ -24,7 +24,7 @@ export class RequestIdInterceptor implements HttpInterceptor {
       localStorage.setItem('REQUEST_ID', requestId);
     }
 
-    // 🔥 Attach Request ID header
+    // 🔥 Attach header
     const modifiedReq = req.clone({
       setHeaders: {
         'X-Request-ID': requestId

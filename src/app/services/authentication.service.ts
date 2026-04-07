@@ -13,21 +13,11 @@ import { Login, SignUp } from 'src/data.type';
 })
 export class AuthenticationService {
 
-  // ================================
-  // 🌱 LOCAL BACKEND (COMMENTED)
-  // ================================
-  // private readonly LOCAL_BASE_URL =
-  //   'http://127.0.0.1:5001/api/v1/auth/angularUser';
-
-  // ================================
-  // 🚀 RENDER BACKEND (ACTIVE)
-  // ================================
   private readonly RENDER_BASE_URL =
     'https://backend-auth-service-ks6f.onrender.com/api/v1/auth/angularUser';
 
   private readonly baseUrl = this.RENDER_BASE_URL;
 
-  // Auth state
   authState$ = new BehaviorSubject<'default' | 'user' | 'seller'>('default');
 
   constructor(
@@ -37,7 +27,6 @@ export class AuthenticationService {
     this.initAuthState();
   }
 
-  // INIT AUTH STATE
   private initAuthState() {
     if (localStorage.getItem('sellerLoggedIn')) {
       this.authState$.next('seller');
@@ -48,7 +37,6 @@ export class AuthenticationService {
     }
   }
 
-  // BLOCK AUTH IF LOGGED IN
   notAllowedAuth() {
     if (
       localStorage.getItem('sellerLoggedIn') ||
@@ -58,7 +46,6 @@ export class AuthenticationService {
     }
   }
 
-  // REGISTER
   userSignup(data: SignUp) {
     return this.http.post(`${this.baseUrl}/register`, {
       email: data.email,
@@ -67,17 +54,14 @@ export class AuthenticationService {
     });
   }
 
-  // LOGIN
   loginUser(data: Login) {
     return this.http.post<any>(`${this.baseUrl}/login`, data);
   }
 
-  // SET AUTH STATE
   setAuthState(role: 'user' | 'seller') {
     this.authState$.next(role);
   }
 
-  // LOGOUT
   logout() {
     localStorage.clear();
     this.authState$.next('default');
