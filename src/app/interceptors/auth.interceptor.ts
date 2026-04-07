@@ -17,6 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const token = localStorage.getItem('token');
 
+    // ✅ Only attach header if token exists
     if (token) {
       const authReq = req.clone({
         setHeaders: {
