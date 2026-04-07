@@ -23,17 +23,26 @@ export class SellerAddProductComponent {
   }
 
   submit(form: any): void {
+    console.log("🔥 SUBMIT CLICKED"); // ✅ check button click
+    console.log("📦 FORM DATA:", form); // ✅ check form data
+
+    // ✅ VALIDATION
+    if (!form || !form.name || !form.price) {
+      alert("❌ Please fill required fields (name, price)");
+      return;
+    }
+
     this.isLoading = true;
-
-    
-
-    
 
     this.productService.addProduct(form).subscribe({
       next: (res) => {
+        console.log("✅ PRODUCT ADDED:", res); // ✅ success log
+
         this.router.navigate(['/seller-add-stock', res.id]);
       },
-      error: () => {
+      error: (err) => {
+        console.log("❌ ERROR:", err); // ✅ error log
+
         alert('Failed to add product');
         this.isLoading = false;
       }
